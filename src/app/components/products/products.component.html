@@ -1,5 +1,5 @@
 <div id="products">
-    <div id="product" *ngFor="let product of products_details" (click)="showProductDescription(product)">
+    <div id="product" *ngFor="let product of productsData" (click)="showProductDescription(product)">
         <img [src]="product.image_url1" alt="">
         <h5>rating : {{ product.rating }}</h5>
         <h3>{{ product.brand_name }}</h3>
@@ -13,6 +13,7 @@
 
 <app-product-description 
   [showPopup]="showPopup" 
+  *ngIf = "selectedProduct"
   [selectedProduct]="selectedProduct" 
   (close)="hideProductDescription()">
 </app-product-description>

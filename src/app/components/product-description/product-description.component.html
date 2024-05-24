@@ -1,4 +1,4 @@
-<div class="product-description" [class.active]="showPopup">
+<div class="product-description" [class.active]="showPopup"  >
     <div class="modal">
         <button class="close" (click)="close.emit()">X</button>
         <div id="product_details">
@@ -24,7 +24,7 @@
                 </div>
 
                 <br>
-                <button>Add To Bag</button>
+                <button (click)="addToCart()">Add To Bag</button>
                 <button>Wishlist</button>
             </div>
         </div>

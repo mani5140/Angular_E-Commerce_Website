@@ -1,0 +1,53 @@
+
+.about-container>div>h1{
+    padding-left: 45%;
+    background: #9bcff1;
+    margin-top: 0;
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+.about{
+    width: 90%;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.row{
+    display: flex;
+    align-items: center;
+}
+.about-col{
+    flex-basis: 48%;
+    text-align: center;
+    padding: 50px;
+}
+.about-col img{
+    width: 100%;
+}
+.about-col h1{
+    padding-top: 0;
+}
+.about-col p{
+    padding: 15px 0 25px;
+}
+.about-img{
+    width: 100%;
+}
+hr{
+    background: #454343;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 2px;
+}
+.about-col>button{
+    display: inline-block;
+    background: #ff0151;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    border-style: none;
+}
+.about-col>button:hover{
+    background: #56261f;
+}

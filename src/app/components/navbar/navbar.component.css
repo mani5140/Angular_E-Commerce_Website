@@ -1,0 +1,48 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(135deg,#8237a0,#9bcff1);
+    z-index: 10;
+}
+.left-navbar{
+    display: flex;
+    align-items: center;
+    
+}
+.left-navbar>p{
+    margin-right: 30px;
+    font-weight: 600;
+    font-size: 22px;
+    cursor: pointer;
+
+}
+.cart-logo{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.right-navbar>img{
+    width: 100px;
+    padding: 7px 30px;
+}
+.right-navbar{
+    display: flex;
+    align-items: center;
+}
+.right-navbar>input{
+    border-style: none;
+    width: 300px;
+    padding: 4px;
+    
+}
+.left-navbar>p::after{
+    content:'';
+    width: 0;
+    height: 3px;
+    background: #951c85;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.left-navbar>p:hover::after{
+    width: 100%;
+}

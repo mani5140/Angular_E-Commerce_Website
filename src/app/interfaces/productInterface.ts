@@ -1,4 +1,4 @@
-export interface products_details{
+export interface productsSchema{
     id: string,
     brand_name: string,
     description: string,

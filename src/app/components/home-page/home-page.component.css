@@ -1,0 +1,34 @@
+
+.homepage{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 40px;
+    background-color: rgb(150, 241, 241);
+}
+.homepage-col-1,.homepage-col-2{
+    flex-basis: 45%;
+    min-width: 200px;
+}
+.homepage-col-2>img{
+    max-width: 100%;
+    padding: 50px 0;
+}
+.homepage-col-1 h1{
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+}
+.homepage-col-1>button{
+    display: inline-block;
+    background: #ff0151;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    border-style: none;
+}
+.homepage-col-1>button:hover{
+    background: #56261f;
+} 

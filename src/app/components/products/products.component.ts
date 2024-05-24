@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { products_details } from 'src/app/interfaces/productInterface';
+import { productsSchema } from 'src/app/interfaces/productInterface';
 import { ProductsDataService } from 'src/app/services/products-data.service';
 
 @Component({
@@ -10,14 +10,18 @@ import { ProductsDataService } from 'src/app/services/products-data.service';
 export class ProductsComponent implements OnInit {
   
   data: any;
-
-  constructor(private productsData: ProductsDataService) { }
+  productsData: productsSchema[] = [];
+  constructor(private productDataService: ProductsDataService) { }
 
   ngOnInit(): void {
-    this.productsData.getProducts().subscribe(
+    this.productDataService.getProducts().subscribe(
       response => {
         this.data = response;
-        console.log(this.data);
+        this.productsData = [];
+        for (let item of this.data.products) {
+          this.productsData.push(this.transformToProductSchema(item));
+        }
+        console.log(this.productsData);
       },
       error => {
         console.error('Error fetching data', error);
@@ -25,28 +29,28 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-
-  products_details: products_details[] = [
-    {
-      id: "1",
-      brand_name: "Roadster",
-      description: "Men White Classic Regular Fit Cotton Casual Shirt",
-      rating: "4.1",
-      price: 500,
-      discount: 20,
-      image_url1: "assets/images/pic1.jpg",
-      image_url2: "assets/images/pic1.jpg",
-      image_url3: "assets/images/pic1.jpg",
-      image_url4: "assets/images/pic1.jpg",
-      size: ["S", "M", "L", "XL"]
-    }
-  ];
-
+  private transformToProductSchema(item: any): productsSchema {
+    return {
+      id: item.id.toString(),
+      brand_name: item.brand,
+      description: item.description,
+      rating: item.rating.toString(),
+      price: item.price,
+      discount: item.discountPercentage,
+      image_url1:  item?.images[0] || '',
+      // ? is a optional chaining operator
+      image_url2: item?.images[1] || '',
+      image_url3: item?.images[2] || '',
+      image_url4: item?.images[3] || '',
+      size: []
+    };
+  }
 
   showPopup: boolean = false;
-  selectedProduct: any;
+  selectedProduct! : productsSchema;
+//  ! is known as the non-null assertion operator
 
-  showProductDescription(product: any): void {
+  showProductDescription(product: productsSchema): void {
     this.showPopup = true;
     this.selectedProduct = product;
   }

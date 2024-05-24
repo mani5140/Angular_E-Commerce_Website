@@ -1,4 +1,6 @@
 import { Component,EventEmitter, Input, Output } from '@angular/core';
+import { productsSchema } from 'src/app/interfaces/productInterface';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-description',
@@ -10,6 +12,18 @@ export class ProductDescriptionComponent {
     return price - price*(discount/100);
   }
   @Input() showPopup: boolean = false;
-  @Input() selectedProduct: any;
+  @Input() selectedProduct!: productsSchema;
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private cartService: CartService) {}
+
+  // getPrice(price: number, discount: number) {
+  //   return price - price * (discount / 100);
+  // }
+
+  addToCart() {
+    window.alert("Product added to cart !!!")
+    this.cartService.addToCart(this.selectedProduct);
+  }
+  
 }
