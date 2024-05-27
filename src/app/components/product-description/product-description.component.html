@@ -14,9 +14,10 @@
                 <h4>rating : {{selectedProduct.rating}}</h4>
                 <h1>{{selectedProduct.brand_name}}</h1>
                 <h4>{{selectedProduct.description}}</h4>
-                <h4>{{getPrice(selectedProduct.price,selectedProduct.discount)}} |
+                <h4>{{selectedProduct.discountedPrice}} |
                     <s>{{selectedProduct.price}}</s>({{selectedProduct.discount}}% off)
                 </h4>
+                <h4>In stock : {{selectedProduct.stock}}</h4>
                 <h2>Select Size : </h2>
                 <div *ngFor="let size of selectedProduct.size; let i = index">
                     <input type="radio" id="size{{i}}" name="size" [value]="size">
@@ -26,6 +27,7 @@
                 <br>
                 <button (click)="addToCart()">Add To Bag</button>
                 <button>Wishlist</button>
+                <h5>{{selectedProduct.returnPolicy}}</h5>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProductsDataService {
   url = "https://dummyjson.com/products";
   constructor(private http:HttpClient) { }
-  getProducts(){
+  getProducts(){ 
     return this.http.get(this.url);
   }
 }

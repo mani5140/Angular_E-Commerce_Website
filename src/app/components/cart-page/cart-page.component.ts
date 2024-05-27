@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { productsSchema } from 'src/app/interfaces/productInterface';
 import { CartService } from 'src/app/services/cart.service';
+import { ProductSchema } from 'src/app/models/MProduct-model';
 
 @Component({
   selector: 'app-cart-page',
@@ -10,7 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartPageComponent {
   
 
-cartItems: { product: productsSchema; quantity: number }[] = [];
+cartItems: { product: ProductSchema; quantity: number }[] = [];
 
   constructor(private cartService: CartService) {}
 
@@ -18,11 +18,15 @@ cartItems: { product: productsSchema; quantity: number }[] = [];
     this.cartItems = this.cartService.getCartItems();
   }
 
-  increaseQuantity(product: productsSchema) {
+  increaseQuantity(product: ProductSchema) {
     this.cartService.increaseQuantity(product);
   }
 
-  decreaseQuantity(product: productsSchema) {
+  decreaseQuantity(product: ProductSchema) {
     this.cartService.decreaseQuantity(product);
+  }
+  removeAll(){
+    this.cartService.clearCart();
+    window.alert("Removed All !!! ");
   }
 }
