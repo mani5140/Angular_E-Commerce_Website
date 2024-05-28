@@ -1,5 +1,5 @@
 <div id="products">
-    <div id="product" *ngFor="let product of productsData" (click)="showProductDescription(product)">
+    <div id="product" *ngFor="let product of filteredProducts" (click)="showProductDescription(product)">
         <img [src]="product.thumbnail" alt="">
         <h5>rating : {{ product.rating }}</h5>
         <h3>{{ product.brand_name }}</h3>

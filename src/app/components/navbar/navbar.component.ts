@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   onSearch(event: any): void {
-    const query = event.target.value.trim();
-    this.router.navigate(['/products'], { queryParams: { search: query } });
+    const query = event.target.value;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { search: query },
+      queryParamsHandling: 'merge'
+    });
   }
 }
