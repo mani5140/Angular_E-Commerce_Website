@@ -6,12 +6,13 @@
   <div *ngFor="let item of cartItems">
     <h3>{{ item.product.brand_name }}</h3>
     <p>{{ item.product.description }}</p>
-    <p>{{ item.product.price }} USD</p>
+    <p>{{ item.totalPrice }} USD</p>
     <div>
-      <button (click)="decreaseQuantity(item.product)">-</button>
+      <button (click)="decreaseQuantity(item)">-</button>
       <span>{{ item.quantity }}</span>
-      <button (click)="increaseQuantity(item.product)">+</button>
+      <button (click)="increaseQuantity(item)">+</button>
     </div>
   </div>
   <button (click)="removeAll()">Remove all Items</button>
+  <h2>{{getTotalCartAmount()}}</h2>
 </div>

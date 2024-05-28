@@ -1,4 +1,4 @@
-export class ProductSchema {
+export class ProductModel {
     id: string;
     brand_name: string;
     description: string;

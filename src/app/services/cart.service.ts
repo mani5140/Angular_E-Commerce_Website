@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { ProductSchema } from '../interfaces/productInterface';
-// import { cartSchema } from '../interfaces/cartInterface';
-import { ProductSchema } from '../models/MProduct-model';
-import { CartSchema } from '../models/MCart-model';
+// import { ProductModel } from '../interfaces/productInterface';
+// import { CartModel } from '../interfaces/cartInterface';
+import { ProductModel } from '../models/product-model';
+import { CartModel } from '../models/cart-model';
 
 // ye interface cartSche
- 
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,49 +13,65 @@ import { CartSchema } from '../models/MCart-model';
 export class CartService {
 
   // private cart: CartItem[] = [];
-  private cart: CartSchema[] = [];
+  private cart: CartModel[] = [];
+  totalCartAmount: number = 0;
 
-  addToCart(product: ProductSchema) {
+  addToCart(product: ProductModel) {
     const existingItem = this.cart.find(item => item.product.id === product.id);
     if (existingItem && existingItem.quantity + 1 <= product.stock) {
       existingItem.quantity += 1;
-    } else if(!existingItem && product.stock >= 1){
-      this.cart.push({ product, quantity: 1 });
+      existingItem.totalPrice += product.discountedPrice;
+      this.totalCartAmount += product.discountedPrice;
+    } else if (!existingItem && product.stock >= 1) {
+      this.cart.push(
+        new CartModel(product, 1)
+      );
+      this.totalCartAmount += product.discountedPrice;
     }
-    else{
+    else {
       window.alert("Out of stock !!! ")
     }
   }
 
-  getCartItems(): CartSchema[] {
+  getCartItems(): CartModel[] {
     return this.cart;
   }
 
-  increaseQuantity(product: ProductSchema) {
-    const item = this.cart.find(item => item.product.id === product.id);
-    if (item && item.quantity + 1 <= product.stock) {
-      item.quantity += 1;
+  increaseQuantity(cartItem: CartModel) {
+    if (cartItem && cartItem.quantity + 1 <= cartItem.product.stock) {
+      cartItem.quantity += 1;
+      cartItem.totalPrice += cartItem.product.discountedPrice;
+      this.totalCartAmount += cartItem.product.discountedPrice;
     }
-    else{
+    else {
       window.alert("Out of stock !!! ")
     }
   }
 
-  decreaseQuantity(product: ProductSchema) {
-    const item = this.cart.find(item => item.product.id === product.id);
-    if (item && item.quantity > 1) {
-      item.quantity -= 1;
-    } else if (item) {
-      this.removeItem(product);
+  decreaseQuantity(cartItem: CartModel) {
+    if (cartItem && cartItem.quantity > 1) {
+      cartItem.quantity -= 1;
+      cartItem.totalPrice -= cartItem.product.discountedPrice;
+      this.totalCartAmount -= cartItem.product.discountedPrice;
+
+    } else if (cartItem) {
+      this.removeItem(cartItem.product);
+      this.totalCartAmount -= cartItem.product.discountedPrice;
       window.alert("Product removed Successfully !!! ")
     }
   }
 
-  removeItem(product: ProductSchema) {
-    this.cart = this.cart.filter(item => item.product.id !== product.id);
+  removeItem(product: ProductModel) {
+    // this.cart = this.cart.filter(item => item.product.id !== product.id);
+    this.cart.map((a: CartModel, index: number) => {
+      if (product.id === a.product.id) {
+        this.cart.splice(index, 1);
+      }
+    });
   }
 
   clearCart() {
     this.cart = [];
+    window.location.reload();
   }
 }
