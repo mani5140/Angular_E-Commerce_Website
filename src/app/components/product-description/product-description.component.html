@@ -1,59 +1,35 @@
-<div class="product-description" [class.active]="showPopup"  >
+<div class="product-description" [class.active]="showPopup">
     <div class="modal">
-        <button class="close" (click)="close.emit()">X</button>
-        <div id="product_details">
-            
-            <div id="left">
-
-                <img [src]="selectedProduct.image_url1" alt="">
-                <img [src]="selectedProduct.image_url2" alt="">
-                <img [src]="selectedProduct.image_url3" alt="">
-                <img [src]="selectedProduct.image_url4" alt="">
-            </div>
-            <div id="right">
-                <h4>rating : {{selectedProduct.rating}}</h4>
-                <h1>{{selectedProduct.brand_name}}</h1>
-                <h4>{{selectedProduct.description}}</h4>
-                <h4>{{selectedProduct.discountedPrice}} |
-                    <s>{{selectedProduct.price}}</s>({{selectedProduct.discount}}% off)
-                </h4>
-                <h4>In stock : {{selectedProduct.stock}}</h4>
-                <h2>Select Size : </h2>
-                <div *ngFor="let size of selectedProduct.size; let i = index">
-                    <input type="radio" id="size{{i}}" name="size" [value]="size">
-                    <label for="size{{i}}">{{ size }}</label>
-                </div>
-
-                <br>
-                <button (click)="addToCart()">Add To Bag</button>
-                <button>Wishlist</button>
-                <h5>{{selectedProduct.returnPolicy}}</h5>
-            </div>
+      <button class="close" (click)="close.emit()">X</button>
+      <div class="product-details">
+        <div class="left">
+          <img [src]="selectedProduct.image_url1" alt="">
+          <img [src]="selectedProduct.image_url2" alt="">
+          <img [src]="selectedProduct.image_url3" alt="">
+          <img [src]="selectedProduct.image_url4" alt="">
         </div>
+        <div class="right">
+          <h4>Rating: {{selectedProduct.rating}}</h4>
+          <h1>{{selectedProduct.brand_name}}</h1>
+          <h4>{{selectedProduct.description}}</h4>
+          <h4>{{selectedProduct.discountedPrice}} USD | 
+            <s>{{selectedProduct.price}} USD</s> ({{selectedProduct.discount}}% off)
+          </h4>
+          <h4>In stock: {{selectedProduct.stock}}</h4>
+          <h2>Select Size:</h2>
+          <div class="size-options">
+            <div *ngFor="let size of selectedProduct.size; let i = index">
+              <input type="radio" id="size{{i}}" name="size" [value]="size">
+              <label for="size{{i}}">{{ size }}</label>
+            </div>
+          </div>
+          <div class="buttons">
+            <button class="add-to-cart" (click)="addToCart()">Add To Bag</button>
+            <button class="wishlist">Wishlist</button>
+          </div>
+          <h5>{{selectedProduct.returnPolicy}}</h5>
+        </div>
+      </div>
     </div>
-</div>
-
-<!-- <div id="product_details">
-    <div id="left">
-
-        <img [src]="selectedProduct.image_url1" alt="">
-        <img [src]="selectedProduct.image_url2" alt="">
-        <img [src]="selectedProduct.image_url3" alt="">
-        <img [src]="selectedProduct.image_url4" alt="">
-    </div>
-    <div id="right">
-        <h4>rating : {{selectedProduct.rating}}</h4>
-        <h1>{{selectedProduct.brand_name}}</h1>
-        <h4>{{selectedProduct.description}}</h4>
-        <h4>{{getPrice(selectedProduct.price,selectedProduct.discount)}} |
-            <s>{{selectedProduct.price}}</s>({{selectedProduct.discount}}% off)</h4>
-        <h2>Select Size : </h2>    
-        @for (sizes of selectedProduct.size; track products_details){
-            <input type="radio" id="size" name="fav_language" value="HTML">
-            <label>{{sizes}}</label>
-        }
-        <br>
-        <button>Add To Bag</button>
-        <button>Wishlist</button>
-    </div>
-</div> -->
+  </div>
+  

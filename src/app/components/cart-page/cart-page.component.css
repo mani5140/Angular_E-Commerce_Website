@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+  }
+  
+  .cart-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .empty-cart p {
+    font-size: 1.2em;
+    color: #888;
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .cart-items h2,
+  .order-summary h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-item img.product-thumbnail {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .product-details {
+    flex-grow: 1;
+  }
+  
+  .product-details h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+  }
+  
+  .product-details p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .quantity-controls button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .quantity-controls button:hover {
+    background-color: #0056b3;
+  }
+  
+  .quantity-controls span {
+    margin: 0 10px;
+    font-size: 1em;
+  }
+  
+  .remove-all-button {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-all-button:hover {
+    background-color: #b21f2d;
+  }
+  
+  .order-summary {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .summary-row h4,
+  .summary-row h5,
+  .summary-row h1 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .summary-row.total-price h1 {
+    font-size: 1.5em;
+    color: #007bff;
+  }
+  

@@ -1,18 +1,44 @@
-<div *ngIf="cartItems.length === 0">
-  <p>Your cart is empty</p>
-</div>
-<div *ngIf="cartItems.length > 0">
-  <h2>Your Cart</h2>
-  <div *ngFor="let item of cartItems">
-    <h3>{{ item.product.brand_name }}</h3>
-    <p>{{ item.product.description }}</p>
-    <p>{{ item.totalPrice }} USD</p>
-    <div>
-      <button (click)="decreaseQuantity(item)">-</button>
-      <span>{{ item.quantity }}</span>
-      <button (click)="increaseQuantity(item)">+</button>
+<div class="cart-container">
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty</p>
+  </div>
+  <div *ngIf="cartItems.length > 0" class="cart-items">
+    <h2>Your Shopping Cart</h2>
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.product.thumbnail" alt="{{ item.product.brand_name }}" class="product-thumbnail">
+      <div class="product-details">
+        <h3>{{ item.product.brand_name }}</h3>
+        <p>{{ item.product.description }}</p>
+        <p>{{ item.totalPrice }} USD</p>
+        <div class="quantity-controls">
+          <button (click)="decreaseQuantity(item)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)">+</button>
+        </div>
+      </div>
+    </div>
+    <button (click)="removeAll()" class="remove-all-button">Remove all Items</button>
+    <h2>Total: {{ getTotalCartAmount() }} USD</h2>
+  </div>
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <div class="summary-row">
+      <h4>Total Items:</h4>
+      <h4>{{ getTotalItems() }}</h4>
+    </div>
+    <div class="summary-row">
+      <h4>Price After Discount:</h4>
+      <h4>{{ getTotalCartAmount() }} USD</h4>
+    </div>
+    <div class="summary-row">
+      <h5>Shipping Charges:</h5>
+      <h5>5 USD</h5>
+    </div>
+    <div class="summary-row total-price">
+      <h1>TOTAL PRICE:</h1>
+      <h1>{{ getTotalCartAmount() + 5 }} USD</h1>
     </div>
   </div>
-  <button (click)="removeAll()">Remove all Items</button>
-  <h2>{{getTotalCartAmount()}}</h2>
 </div>
+
+

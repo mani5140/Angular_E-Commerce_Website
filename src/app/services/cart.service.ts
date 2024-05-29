@@ -14,6 +14,7 @@ export class CartService {
 
   // private cart: CartItem[] = [];
   private cart: CartModel[] = [];
+  totalItems: number = 0;
   totalCartAmount: number = 0;
 
   addToCart(product: ProductModel) {
@@ -21,11 +22,13 @@ export class CartService {
     if (existingItem && existingItem.quantity + 1 <= product.stock) {
       existingItem.quantity += 1;
       existingItem.totalPrice += product.discountedPrice;
+      this.totalItems += 1;
       this.totalCartAmount += product.discountedPrice;
     } else if (!existingItem && product.stock >= 1) {
       this.cart.push(
-        new CartModel(product, 1)
+        new CartModel(product)
       );
+      this.totalItems += 1;
       this.totalCartAmount += product.discountedPrice;
     }
     else {
@@ -41,6 +44,7 @@ export class CartService {
     if (cartItem && cartItem.quantity + 1 <= cartItem.product.stock) {
       cartItem.quantity += 1;
       cartItem.totalPrice += cartItem.product.discountedPrice;
+      this.totalItems += 1;
       this.totalCartAmount += cartItem.product.discountedPrice;
     }
     else {
@@ -52,11 +56,18 @@ export class CartService {
     if (cartItem && cartItem.quantity > 1) {
       cartItem.quantity -= 1;
       cartItem.totalPrice -= cartItem.product.discountedPrice;
+      this.totalItems -= 1;
       this.totalCartAmount -= cartItem.product.discountedPrice;
 
     } else if (cartItem) {
       this.removeItem(cartItem.product);
-      this.totalCartAmount -= cartItem.product.discountedPrice;
+      this.totalItems -= 1;
+      if(this.totalItems == 0){
+        this.totalCartAmount = 0;
+      }
+      else{
+        this.totalCartAmount -= cartItem.product.discountedPrice;
+      }
       window.alert("Product removed Successfully !!! ")
     }
   }

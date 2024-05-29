@@ -12,7 +12,6 @@ export class CartPageComponent {
   
 
 cartItems: CartModel[] = [];
-totalCartAmount: number = 0;
 
   constructor(private cartService: CartService) {}
 
@@ -37,6 +36,10 @@ totalCartAmount: number = 0;
   removeAll(){
     this.cartService.clearCart();
     window.alert("Removed All !!! ");
+  }
+
+  getTotalItems(): number{
+    return this.cartService.totalItems;
   }
 
   getTotalCartAmount(): number {
