@@ -12,6 +12,10 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { AdminComponent } from './components/admin-components/admin/admin.component';
+import { CreateProductComponent } from './components/admin-components/create-product/create-product.component';
+import { UpdateProductComponent } from './components/admin-components/update-product/update-product.component';
+import { DeleteProductComponent } from './components/admin-components/delete-product/delete-product.component';
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     AboutPageComponent,
     ContactPageComponent,
     NavbarComponent,
-    HomePageComponent
+    HomePageComponent,
+    AdminComponent,
+    CreateProductComponent,
+    UpdateProductComponent,
+    DeleteProductComponent
   ],
   imports: [
     BrowserModule,
