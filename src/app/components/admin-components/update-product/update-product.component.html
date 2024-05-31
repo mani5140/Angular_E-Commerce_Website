@@ -1,1 +1,44 @@
-<p>update-product works!</p>
+<form [formGroup]="updateProductForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Brand:</label>
+      <input formControlName="brand">
+    </div>
+    <div>
+      <label>Description:</label>
+      <input formControlName="description">
+    </div>
+    <div>
+      <label>Rating:</label>
+      <input formControlName="rating">
+    </div>
+    <div>
+      <label>Price:</label>
+      <input formControlName="price">
+    </div>
+    <div>
+      <label>Discount Percentage:</label>
+      <input formControlName="discountPercentage">
+    </div>
+    <div>
+      <label>Stock:</label>
+      <input formControlName="stock">
+    </div>
+    <div>
+      <label>Thumbnail:</label>
+      <input formControlName="thumbnail">
+    </div>
+    <div>
+      <label>Return Policy:</label>
+      <input formControlName="returnPolicy">
+    </div>
+    <div>
+      <label>Availability Status:</label>
+      <input formControlName="availabilityStatus">
+    </div>
+    <div>
+      <label>Images (comma-separated):</label>
+      <input formControlName="images">
+    </div>
+    <button type="submit">Update Product</button>
+  </form>
+  

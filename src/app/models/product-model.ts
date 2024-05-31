@@ -27,10 +27,10 @@ export class ProductModel {
       thumbnail: string,
       returnPolicy: string = "",
       availabilityStatus: string = "",
-      image_url1: string,
-      image_url2: string,
-      image_url3: string,
-      image_url4: string,
+      image_url1 : string = "",
+      image_url2: string = "",
+      image_url3: string = "",
+      image_url4: string = "",
       size: string[] = [],
       discountedPrice: number = 0
     ) {
