@@ -1,54 +1,17 @@
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { ProductModel } from '../models/product-model';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ProductsDataService {
-//   url = "https://dummyjson.com/products";
-
-//   constructor(private http: HttpClient) { }
-//   private productsData: ProductModel[] = [
-//     // Initial products can be loaded here
-//   ];
-
-
-  
-//   getProducts() {
-//     return this.http.get(this.url);
-//   }
-
-//   createProduct(product: ProductModel): void {
-//     this.productsData.push(product);
-//   }
-
-//   updateProduct(updatedProduct: ProductModel): void {
-//     const index = this.productsData.findIndex(product => product.id === updatedProduct.id);
-//     if (index !== -1) {
-//       this.productsData[index] = updatedProduct;
-//     }
-//   }
-
-//   deleteProduct(productId: string): void {
-//     this.productsData = this.productsData.filter(product => product.id !== productId);
-//   }
-
-// }
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductModel } from '../models/product-model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsDataService {
+
   private url = "https://dummyjson.com/products";
-  private productsData: ProductModel[] = [];
-  private productsSubject = new BehaviorSubject<ProductModel[]>(this.productsData);
+  public productsData: ProductModel[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -78,30 +41,27 @@ export class ProductsDataService {
     );
   }
 
-  getProducts(): Observable<ProductModel[]> {
-    return this.productsSubject.asObservable();
+  getProducts(): ProductModel[] {
+    return this.productsData;
   }
 
   setProducts(products: ProductModel[]): void {
     this.productsData = products;
-    this.productsSubject.next(this.productsData);
   }
 
   createProduct(product: ProductModel): void {
     this.productsData.push(product);
-    this.productsSubject.next(this.productsData);
   }
 
   updateProduct(updatedProduct: ProductModel): void {
     const index = this.productsData.findIndex(product => product.id === updatedProduct.id);
     if (index !== -1) {
       this.productsData[index] = updatedProduct;
-      this.productsSubject.next(this.productsData);
     }
   }
 
   deleteProduct(productId: string): void {
     this.productsData = this.productsData.filter(product => product.id !== productId);
-    this.productsSubject.next(this.productsData);
   }
 }
+

@@ -11,7 +11,7 @@ import { ProductModel } from 'src/app/models/product-model';
 })
 export class UpdateProductComponent implements OnInit {
   updateProductForm: FormGroup;
-  productId: string | null = null;
+  productId!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -29,26 +29,35 @@ export class UpdateProductComponent implements OnInit {
       thumbnail: ['', Validators.required],
       returnPolicy: ['', Validators.required],
       availabilityStatus: ['', Validators.required],
-      images: ['', Validators.required],
+      images: [''],
     });
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.productId = params.get('id');
-      if (this.productId) {
-        const product = this.productService.getProducts().subscribe(products => {
-          const product = products.find(p => p.id === this.productId);
-          if (product) {
-            this.updateProductForm.patchValue(product);
-          }
-        });
-      }
+    // this.route.paramMap.subscribe(params => {
+    //   this.productId = params.get('productId') || '';
+    //   console.log(this.productId);
+    //   if (this.productId) {
+    //     this.productService.getProducts().subscribe(products => {
+    //       const product = products.find(p => p.id === this.productId);
+    //       if (product) {
+    //         this.updateProductForm.patchValue(product);
+    //       }
+    //     });
+    //   }
+    // });
+    this.route.queryParams.subscribe(params => {
+      this.setProductId(params['search'] || '');
     });
   }
 
-  onSubmit(): void {
-    if (this.updateProductForm.valid && this.productId) {
+  setProductId(id: string){
+    this.productId = id;
+    console.log(this.productId);
+  }
+
+  onSubmit(): void {  
+    if (this.productId) {
       const updatedProduct = new ProductModel(
         this.productId,
         this.updateProductForm.value.brand,
@@ -72,4 +81,3 @@ export class UpdateProductComponent implements OnInit {
     }
   }
 }
-

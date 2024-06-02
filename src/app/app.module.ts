@@ -44,8 +44,7 @@ import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'products', component: ProductsComponent },
-      // Other routes
+      { path: 'products', component: ProductsComponent }
     ])
   ],
   providers: [

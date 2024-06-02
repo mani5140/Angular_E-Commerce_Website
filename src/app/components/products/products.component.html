@@ -10,6 +10,8 @@
         <span class="discount">({{ product.discount }}% off)</span>
       </div>
       <h5>{{ product.availabilityStatus }}</h5>
+      <button (click)="setProductId(product.id)">update</button>
+      <button (click)="deleteProduct(product.id)">delete</button>
     </div>
   </div>
   
