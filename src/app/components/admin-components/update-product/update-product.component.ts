@@ -34,18 +34,6 @@ export class UpdateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.route.paramMap.subscribe(params => {
-    //   this.productId = params.get('productId') || '';
-    //   console.log(this.productId);
-    //   if (this.productId) {
-    //     this.productService.getProducts().subscribe(products => {
-    //       const product = products.find(p => p.id === this.productId);
-    //       if (product) {
-    //         this.updateProductForm.patchValue(product);
-    //       }
-    //     });
-    //   }
-    // });
     this.route.queryParams.subscribe(params => {
       this.setProductId(params['search'] || '');
     });

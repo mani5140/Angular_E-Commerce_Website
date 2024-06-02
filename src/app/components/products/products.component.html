@@ -1,12 +1,20 @@
-<div id="products">
-    <div class="product" *ngFor="let product of filteredProducts" (click)="showProductDescription(product)">
-      <img [src]="product.thumbnail" alt="{{ product.brand_name }}" class="product-thumbnail">
+<div>
+  <div id="products">
+    <div class="product" *ngFor="let product of filteredProducts">
+      <img
+        [src]="product.thumbnail"
+        alt="{{ product.brand_name }}"
+        class="product-thumbnail"
+        (click)="showProductDescription(product)"
+      />
       <h5>Rating: {{ product.rating }}</h5>
       <h3>{{ product.brand_name }}</h3>
       <p>{{ product.description }}</p>
       <div class="price-details">
         <span class="discounted-price">{{ product.discountedPrice }} USD</span>
-        <span class="original-price"><s>{{ product.price }} USD</s></span>
+        <span class="original-price"
+          ><s>{{ product.price }} USD</s></span
+        >
         <span class="discount">({{ product.discount }}% off)</span>
       </div>
       <h5>{{ product.availabilityStatus }}</h5>
@@ -19,7 +27,8 @@
     *ngIf="showPopup"
     [showPopup]="showPopup"
     [selectedProduct]="selectedProduct"
-    (close)="hideProductDescription()">
+    (close)="hideProductDescription()"
+  >
   </app-product-description>
   
-
+</div>

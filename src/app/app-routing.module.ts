@@ -5,12 +5,8 @@ import { ContactPageComponent } from './components/contact-page/contact-page.com
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ProductsComponent } from './components/products/products.component';
-import { AdminComponent } from './components/admin-components/admin/admin.component';
 import { CreateProductComponent } from './components/admin-components/create-product/create-product.component';
 import { UpdateProductComponent } from './components/admin-components/update-product/update-product.component';
-import { DeleteProductComponent } from './components/admin-components/delete-product/delete-product.component';
-
-
 
 const routes: Routes = [
   {
@@ -33,10 +29,8 @@ const routes: Routes = [
     component: ProductsComponent,
     path: 'products'
   },
-  { component: AdminComponent,path: 'admin'},
-  { component: CreateProductComponent, path: 'admin/create'},
-  { component: UpdateProductComponent,path: 'admin/update'},
-  { component: DeleteProductComponent,path: 'admin/delete'}
+  { component: CreateProductComponent, path: 'create'},
+  { component: UpdateProductComponent,path: 'update'}
 ];
 
 @NgModule({

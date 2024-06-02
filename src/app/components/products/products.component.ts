@@ -1,5 +1,93 @@
+// import { Component, OnInit, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+// import { Router, ActivatedRoute } from '@angular/router';
+// import { ProductsDataService } from 'src/app/services/products-data.service';
+// import { ProductModel } from 'src/app/models/product-model';
 
-import { Component, OnInit, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+// @Component({
+//   selector: 'app-products',
+//   templateUrl: './products.component.html',
+//   styleUrls: ['./products.component.css']
+// })
+// export class ProductsComponent implements OnInit, OnChanges, DoCheck {
+//   productsData: ProductModel[] = [];
+//   filteredProducts: ProductModel[] = [];
+
+//   showPopup: boolean = false;
+//   selectedProduct!: ProductModel;
+
+//   constructor(
+//     private productDataService: ProductsDataService,
+//     private route: ActivatedRoute,
+//     private router: Router
+//   ) { }
+
+//   ngOnChanges(changes: SimpleChanges): void {
+//       console.log("hello");
+//   }
+
+//   ngDoCheck(): void {
+//       this.filteredProducts = this.productDataService.getProducts();
+//   }
+
+//   filterProducts(query: string): void {
+//     if (!query) {
+//       this.filteredProducts = this.productsData;
+//     } else {
+//       const lowerCaseQuery = query.toLowerCase();
+//       this.filteredProducts = this.productsData.filter(product =>
+//         (product.brand_name && product.brand_name.toLowerCase().includes(lowerCaseQuery)) ||
+//         (product.description && product.description.toLowerCase().includes(lowerCaseQuery))
+//       );
+//     }
+//   }
+
+//   ngOnInit(): void {
+//     // Fetch products from service and update the component state
+//     this.productDataService.fetchProducts().subscribe(
+//       products => {
+//         this.productsData = products;
+//         this.filteredProducts = this.productsData;
+
+//         // Apply any filters from query params
+//         this.route.queryParams.subscribe(params => {
+//           this.filterProducts(params['search'] || '');
+//         });
+//       },
+//       error => {
+//         console.error('Error fetching data', error);
+//       }
+//     );
+//   }
+
+//   setProductId(id: string): void {
+//     this.router.navigate(["/admin/update"], {
+//       relativeTo: this.route,
+//       queryParams: { search: id },
+//       queryParamsHandling: 'merge'
+//     });
+//   }
+
+//   deleteProduct(id: string): void {
+//     this.productDataService.deleteProduct(id);
+//   }
+
+//   showProductDescription(product: ProductModel): void {
+//     this.showPopup = true;
+//     this.selectedProduct = product;
+//   }
+
+//   hideProductDescription(): void {
+//     this.showPopup = false;
+//   }
+// }
+
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductsDataService } from 'src/app/services/products-data.service';
 import { ProductModel } from 'src/app/models/product-model';
@@ -7,27 +95,32 @@ import { ProductModel } from 'src/app/models/product-model';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit, OnChanges, DoCheck {
+export class ProductsComponent implements OnInit, DoCheck, OnChanges{
   productsData: ProductModel[] = [];
   filteredProducts: ProductModel[] = [];
-
   showPopup: boolean = false;
   selectedProduct!: ProductModel;
+  searchQuery: string = '';
 
   constructor(
     private productDataService: ProductsDataService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-      console.log("hello");
+    console.log("hello");
+    let change = changes[this.searchQuery];
+    if(!change.firstChange){
+      this.filterProducts(this.searchQuery);
+    }
+
   }
 
   ngDoCheck(): void {
-      this.filteredProducts = this.productDataService.getProducts();
+    this.filteredProducts = this.productDataService.getProducts();
   }
 
   filterProducts(query: string): void {
@@ -35,36 +128,46 @@ export class ProductsComponent implements OnInit, OnChanges, DoCheck {
       this.filteredProducts = this.productsData;
     } else {
       const lowerCaseQuery = query.toLowerCase();
-      this.filteredProducts = this.productsData.filter(product =>
-        (product.brand_name && product.brand_name.toLowerCase().includes(lowerCaseQuery)) ||
-        (product.description && product.description.toLowerCase().includes(lowerCaseQuery))
+      this.filteredProducts = this.productsData.filter(
+        (product) =>
+          (product.brand_name &&
+            product.brand_name.toLowerCase().includes(lowerCaseQuery)) ||
+          (product.description &&
+            product.description.toLowerCase().includes(lowerCaseQuery))
       );
     }
   }
 
   ngOnInit(): void {
-    // Fetch products from service and update the component state
     this.productDataService.fetchProducts().subscribe(
-      products => {
+      (products) => {
         this.productsData = products;
         this.filteredProducts = this.productsData;
+        console.log(this.filteredProducts);
 
         // Apply any filters from query params
-        this.route.queryParams.subscribe(params => {
-          this.filterProducts(params['search'] || '');
+        this.route.queryParams.subscribe((params) => {
+          console.log('im search');
+          this.searchQuery = params['search'] || '';
+          console.log(this.searchQuery);
         });
+
+        // this.route.queryParams.subscribe((params) => {
+        //   this.filterProducts(params['search'] || '');
+        // });
+
       },
-      error => {
+      (error) => {
         console.error('Error fetching data', error);
       }
     );
   }
 
   setProductId(id: string): void {
-    this.router.navigate(["/admin/update"], {
+    this.router.navigate(['/update'], {
       relativeTo: this.route,
       queryParams: { search: id },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 

@@ -13,14 +13,10 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { RouteReuseStrategy, RouterModule } from '@angular/router';
-import { AdminComponent } from './components/admin-components/admin/admin.component';
+import { RouterModule } from '@angular/router';
 import { CreateProductComponent } from './components/admin-components/create-product/create-product.component';
 import { UpdateProductComponent } from './components/admin-components/update-product/update-product.component';
-import { DeleteProductComponent } from './components/admin-components/delete-product/delete-product.component';
 import { ProductsDataService } from './services/products-data.service';
-import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
-
 
 @NgModule({
   declarations: [
@@ -33,24 +29,17 @@ import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
     ContactPageComponent,
     NavbarComponent,
     HomePageComponent,
-    AdminComponent,
     CreateProductComponent,
-    UpdateProductComponent,
-    DeleteProductComponent
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: 'products', component: ProductsComponent }
-    ])
+    RouterModule.forRoot([]),
   ],
-  providers: [
-    ProductsDataService,
-    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
-  ],
-  bootstrap: [AppComponent]
+  providers: [ProductsDataService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

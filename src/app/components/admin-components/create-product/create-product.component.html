@@ -1,45 +1,91 @@
-<form  [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
-  
-    <div>
-      <label>Brand:</label>
-      <input formControlName="brand">
+<div class="form-container">
+  <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()" class="product-form">
+    <div class="form-group">
+      <label for="brand">Brand:</label>
+      <input id="brand" formControlName="brand" type="text">
     </div>
-    <div>
-      <label>Description:</label>
-      <input formControlName="description">
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input id="description" formControlName="description" type="text">
     </div>
-    <div>
-      <label>Rating:</label>
-      <input formControlName="rating">
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <input id="rating" formControlName="rating" >
     </div>
-    <div>
-      <label>Price:</label>
-      <input formControlName="price">
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" >
     </div>
-    <div>
-      <label>Discount Percentage:</label>
-      <input formControlName="discountPercentage">
+    <div class="form-group">
+      <label for="discountPercentage">Discount Percentage:</label>
+      <input id="discountPercentage" formControlName="discountPercentage">
     </div>
-    <div>
-      <label>Stock:</label>
-      <input formControlName="stock">
+    <div class="form-group">
+      <label for="stock">Stock:</label>
+      <input id="stock" formControlName="stock">
     </div>
-    <div>
-      <label>Thumbnail:</label>
-      <input formControlName="thumbnail">
+    <div class="form-group">
+      <label for="thumbnail">Thumbnail URL:</label>
+      <input id="thumbnail" formControlName="thumbnail" type="text">
     </div>
-    <div>
-      <label>Return Policy:</label>
-      <input formControlName="returnPolicy">
+    <div class="form-group">
+      <label for="returnPolicy">Return Policy:</label>
+      <input id="returnPolicy" formControlName="returnPolicy" type="text">
     </div>
-    <div>
-      <label>Availability Status:</label>
-      <input formControlName="availabilityStatus">
+    <div class="form-group">
+      <label for="availabilityStatus">Availability Status:</label>
+      <input id="availabilityStatus" formControlName="availabilityStatus" type="text">
     </div>
-    <div>
-      <label>Images (comma-separated):</label>
-      <input formControlName="images">
+    <div class="form-group">
+      <label for="images">Images (comma-separated):</label>
+      <input id="images" formControlName="images" type="text">
     </div>
-    <button type="submit">Create Product</button>
+    <button type="submit" class="submit-button">Create Product</button>
   </form>
+</div>
+
+<!-- 
+ <form  [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
   
+  <div>
+    <label>Brand:</label>
+    <input formControlName="brand">
+  </div>
+  <div>
+    <label>Description:</label>
+    <input formControlName="description">
+  </div>
+  <div>
+    <label>Rating:</label>
+    <input formControlName="rating">
+  </div>
+  <div>
+    <label>Price:</label>
+    <input formControlName="price">
+  </div>
+  <div>
+    <label>Discount Percentage:</label>
+    <input formControlName="discountPercentage">
+  </div>
+  <div>
+    <label>Stock:</label>
+    <input formControlName="stock">
+  </div>
+  <div>
+    <label>Thumbnail:</label>
+    <input formControlName="thumbnail">
+  </div>
+  <div>
+    <label>Return Policy:</label>
+    <input formControlName="returnPolicy">
+  </div>
+  <div>
+    <label>Availability Status:</label>
+    <input formControlName="availabilityStatus">
+  </div>
+  <div>
+    <label>Images (comma-separated):</label>
+    <input formControlName="images">
+  </div>
+  <button type="submit">Create Product</button>
+</form> -->
