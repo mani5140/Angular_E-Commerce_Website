@@ -76,13 +76,21 @@ import { map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductsDataService {
+
   private url = "https://dummyjson.com/products";
-  private productsData: ProductModel[] = [];
-  private dataLoaded = false;
+  productsData: ProductModel[] = [];
+  dataLoaded = false;
+
 
   constructor(private http: HttpClient) { }
 
+  // fetchProducts() {
+  //   return this.http.get(this.url);
+  // }
+
+
   fetchProducts(): Observable<ProductModel[]> {
+    
     if (this.dataLoaded) {
       return of(this.productsData);
     } else {
@@ -114,11 +122,14 @@ export class ProductsDataService {
 
   getProducts(): ProductModel[] {
     return this.productsData;
+    // angular method to get data without getter
   }
 
   setProducts(products: ProductModel[]): void {
     this.productsData = products;
-    this.dataLoaded = true;
+    console.log(this.productsData)
+    console.log("im in set")
+    // this.dataLoaded = true;
   }
 
   createProduct(product: ProductModel): void {
@@ -129,11 +140,16 @@ export class ProductsDataService {
     const index = this.productsData.findIndex(product => product.id === updatedProduct.id);
     if (index !== -1) {
       this.productsData[index] = updatedProduct;
-    }
+    } 
   }
 
   deleteProduct(productId: string): void {
-    this.productsData = this.productsData.filter(product => product.id !== productId);
+    // this.productsData = this.productsData.filter(product => product.id !== productId);
+    this.productsData.map((a: ProductModel, index: number) => {
+      if (productId === a.id) {
+        this.productsData.splice(index, 1);
+      }
+    });
   }
 }
 

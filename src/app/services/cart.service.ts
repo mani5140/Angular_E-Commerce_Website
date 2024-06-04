@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { ProductModel } from '../interfaces/productInterface';
-// import { CartModel } from '../interfaces/cartInterface';
 import { ProductModel } from '../models/product-model';
 import { CartModel } from '../models/cart-model';
 
@@ -12,7 +10,6 @@ import { CartModel } from '../models/cart-model';
 })
 export class CartService {
 
-  // private cart: CartItem[] = [];
   private cart: CartModel[] = [];
   totalItems: number = 0;
   totalCartAmount: number = 0;
