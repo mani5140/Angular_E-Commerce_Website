@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDescriptionComponent } from './components/product-description/product-description.component';
-import { ConceptsComponent } from './components/concepts/concepts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
@@ -23,7 +21,6 @@ import { ProductService } from './services/product.service';
     AppComponent,
     ProductsComponent,
     ProductDescriptionComponent,
-    ConceptsComponent,
     CartPageComponent,
     AboutPageComponent,
     ContactPageComponent,

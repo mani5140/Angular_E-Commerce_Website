@@ -15,13 +15,6 @@ cartItems: CartModel[] = [];
 
   constructor(private cartService: CartService) {}
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   let change = changes[this.cartService.totalCartAmount]
-  //   if (!change.firstChange) {
-  //     this.getTotalCartAmount();
-  //   }
-  // }
-  
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
   }

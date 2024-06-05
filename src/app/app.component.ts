@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductsComponent } from './components/products/products.component';
-import { ConceptsComponent } from './components/concepts/concepts.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
