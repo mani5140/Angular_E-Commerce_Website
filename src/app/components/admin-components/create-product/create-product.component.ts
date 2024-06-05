@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProductsDataService } from 'src/app/services/products-data.service';
+import { ProductService } from 'src/app/services/product.service';
 import { ProductModel } from 'src/app/models/product-model';
 
 @Component({
@@ -14,7 +14,7 @@ export class CreateProductComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductsDataService,
+    private productService: ProductService,
     private router: Router
   ) {
     this.createProductForm = this.fb.group({

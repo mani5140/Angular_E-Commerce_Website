@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsDataService } from 'src/app/services/products-data.service';
+import { ProductService } from 'src/app/services/product.service';
 import { ProductModel } from 'src/app/models/product-model';
 
 @Component({
@@ -11,11 +11,12 @@ import { ProductModel } from 'src/app/models/product-model';
 })
 export class UpdateProductComponent implements OnInit {
   updateProductForm: FormGroup;
-  productId!: string;
+  product!: ProductModel;
+  productIndex!: number;
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductsDataService,
+    private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -35,19 +36,32 @@ export class UpdateProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.setProductId(params['search'] || '');
+      this.productIndex = params['productIndex'];
+      this.product = JSON.parse(params['product']);
+      console.log(this.product);
     });
-  }
 
-  setProductId(id: string){
-    this.productId = id;
-    console.log(this.productId);
+    if(this.product){
+      this.updateProductForm.patchValue({
+      brand: this.product.brand_name,
+      description: this.product.description,
+      rating: this.product.rating,
+      price: this.product.price,
+      discountPercentage:  this.product.discount,
+      stock: this.product.stock,
+      thumbnail: this.product.thumbnail,
+      returnPolicy: this.product.returnPolicy,
+      availabilityStatus: this.product.availabilityStatus,
+      images: [''],
+      })
+    }
+
   }
 
   onSubmit(): void {  
-    if (this.productId) {
+   
       const updatedProduct = new ProductModel(
-        this.productId,
+        this.product.id,
         this.updateProductForm.value.brand,
         this.updateProductForm.value.description,
         this.updateProductForm.value.rating,
@@ -64,8 +78,8 @@ export class UpdateProductComponent implements OnInit {
         ["l", "xl", "xxl"]
       );
 
-      this.productService.updateProduct(updatedProduct);
+      this.productService.updateProduct(updatedProduct,this.productIndex);
       this.router.navigate(['/products']);
     }
   }
-}
+

@@ -16,7 +16,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
 import { CreateProductComponent } from './components/admin-components/create-product/create-product.component';
 import { UpdateProductComponent } from './components/admin-components/update-product/update-product.component';
-import { ProductsDataService } from './services/products-data.service';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { ProductsDataService } from './services/products-data.service';
     ReactiveFormsModule,
     RouterModule.forRoot([]),
   ],
-  providers: [ProductsDataService],
+  providers: [ProductService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

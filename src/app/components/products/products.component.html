@@ -1,6 +1,6 @@
 <div>
   <div id="products">
-    <div class="product" *ngFor="let product of filteredProducts">
+    <div class="product" *ngFor="let product of filteredProducts; let i = index">
       <img
         [src]="product.thumbnail"
         alt="{{ product.brand_name }}"
@@ -18,8 +18,8 @@
         <span class="discount">({{ product.discount }}% off)</span>
       </div>
       <h5>{{ product.availabilityStatus }}</h5>
-      <button (click)="setProductId(product.id)">update</button>
-      <button (click)="deleteProduct(product.id)">delete</button>
+      <button (click)="updateProduct(i, product)">update</button>
+      <button (click)="deleteProduct(i)">delete</button>
     </div>
   </div>
   
