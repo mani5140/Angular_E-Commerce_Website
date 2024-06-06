@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   filteredProducts: ProductModel[] = [];
   showPopup: boolean = false;
   selectedProduct!: ProductModel;
+  private url = 'https://dummyjson.com/products';
 
   constructor(
     private productService: ProductService,
@@ -25,7 +26,7 @@ export class ProductsComponent implements OnInit {
     this.filteredProducts = this.productService.productsData;
 
     if (this.productService.productsData.length < 1) {
-      this.productService.fetchProducts().subscribe(
+      this.productService.fetchProducts(this.url).subscribe(
         (res: any) => {
           res.products.forEach((item: any) => {
             const product = new ProductModel(

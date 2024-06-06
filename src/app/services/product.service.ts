@@ -7,14 +7,13 @@ import { ProductModel } from '../models/product-model';
 })
 export class ProductService {
   
-  private url = 'https://dummyjson.com/products';
   productsData: ProductModel[] = [];
   dataLoaded: boolean = false;
 
   constructor(private http: HttpClient) {}
 
-  fetchProducts() {
-    return this.http.get(this.url);
+  fetchProducts(url: string) {
+    return this.http.get(url);
   }
 
   getProducts(): ProductModel[] {
